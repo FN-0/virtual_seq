@@ -87,7 +87,7 @@ def main():
 
   results_df = pd.concat(results, axis=1)
   results_df = pd.concat([dataframe, results_df], axis=1)
-  results_df.to_excel('virtual_seq.xlsx', index=False)
+  results_df.to_excel('/output/virtual_seq.xlsx', index=False)
 
 if __name__ == "__main__":
   start_time = time.time()

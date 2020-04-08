@@ -73,7 +73,7 @@ def random_df(seq_list, n):
   return pd.DataFrame(randarr, columns=columns_name(str(col_name), n))
 
 def main():
-  number2split = 5
+  number2split = 10
   dataframe = read_data(sys.argv[1])
   columns_list = get_columns(dataframe)
   n_list = [number2split for _ in range(number2split)]

@@ -78,7 +78,7 @@ def main():
   columns_list = get_columns(dataframe)
   n_list = [number2split for _ in range(number2split)]
 
-  pool = ThreadPool(4)
+  pool = ThreadPool(12)
   results = pool.starmap(random_df, zip(columns_list, n_list))
 
   # Close the pool and wait for the work to finish
@@ -87,7 +87,7 @@ def main():
 
   results_df = pd.concat(results, axis=1)
   results_df = pd.concat([dataframe, results_df], axis=1)
-  results_df.to_excel('/output/virtual_seq.xlsx', index=False)
+  results_df.to_excel('output/virtual_seq.xlsx', index=False)
 
 if __name__ == "__main__":
   start_time = time.time()

@@ -86,7 +86,7 @@ def main():
   pool.join()
 
   results_df = pd.concat(results, axis=1)
-  #results_df = pd.concat([dataframe, results_df], axis=1)
+  results_df = pd.concat([dataframe, results_df], axis=1)
   t = time.strftime("%Y%m%d%H%M%S", time.localtime())
   results_df.to_csv('output/virtual_seq_%s.csv' % t, index=False)
 

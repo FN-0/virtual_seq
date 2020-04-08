@@ -73,7 +73,7 @@ def random_df(seq_list, n):
   return pd.DataFrame(randarr, columns=columns_name(str(col_name), n))
 
 def main():
-  number2split = 10
+  number2split = 100
   dataframe = read_data(sys.argv[1])
   columns_list = get_columns(dataframe)
   n_list = [number2split for _ in range(number2split)]
@@ -86,8 +86,9 @@ def main():
   pool.join()
 
   results_df = pd.concat(results, axis=1)
-  results_df = pd.concat([dataframe, results_df], axis=1)
-  results_df.to_excel('output/virtual_seq.xlsx', index=False)
+  #results_df = pd.concat([dataframe, results_df], axis=1)
+  t = time.strftime("%Y%m%d%H%M%S", time.localtime())
+  results_df.to_csv('output/virtual_seq_%s.csv' % t, index=False)
 
 if __name__ == "__main__":
   start_time = time.time()

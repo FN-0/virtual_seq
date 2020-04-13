@@ -10,6 +10,7 @@ from sklearn import (manifold, datasets, decomposition, ensemble,
 #df = pd.read_excel('output/pjs_virtual_seq_with_healthy.xlsx', header=None)
 df_jzx = pd.read_csv('output/JZX_virtual_seq_20200408080722.csv', header=0)
 df_hly = pd.read_csv('output/Healthy_virtual_seq_20200409051915.csv', header=0)
+print('Read csv ok.')
 df_jzx.columns = [1 for _ in range(len(df_jzx.columns))]
 df_hly.columns = [0 for _ in range(len(df_hly.columns))]
 df = pd.concat([df_jzx, df_hly.iloc[:, 1:]], axis=1)
@@ -60,13 +61,13 @@ plt.imshow(img, cmap=plt.cm.binary)
 plt.xticks([])
 plt.yticks([])
 plt.title('A selection from the 64-dimensional digits dataset')"""
-## Computing PCA
+"""## Computing PCA
 print("Computing PCA projection")
 t0 = time()
 X_pca = decomposition.TruncatedSVD(n_components=2).fit_transform(X)
 plot_embedding(X_pca,
                "Principal Components projection of the digits (time %.2fs)" %
-               (time() - t0))
+               (time() - t0))"""
 ## Computing t-SNE
 print("Computing t-SNE embedding")
 tsne = manifold.TSNE(n_components=2, init='pca', random_state=0)
@@ -75,4 +76,5 @@ X_tsne = tsne.fit_transform(X)
 plot_embedding(X_tsne,
                "t-SNE embedding of the digits (time %.2fs)" %
                (time() - t0))
+plt.savefig('tsne.jpg')
 plt.show()

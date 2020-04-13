@@ -7,9 +7,14 @@ from matplotlib import offsetbox
 from sklearn import (manifold, datasets, decomposition, ensemble,
              discriminant_analysis, random_projection)
 ## Loading and curating the data
-df = pd.read_excel('output/pjs_virtual_seq_with_healthy.xlsx', header=None)
-X = df.iloc[1:, 1:].to_numpy().T
-y = df.iloc[0, 1:].to_numpy().T
+#df = pd.read_excel('output/pjs_virtual_seq_with_healthy.xlsx', header=None)
+df_jzx = pd.read_csv('output/JZX_virtual_seq_20200408080722.csv', header=0)
+df_hly = pd.read_csv('output/Healthy_virtual_seq_20200409051915.csv', header=0)
+df_jzx.columns = [1 for _ in range(len(df_jzx.columns))]
+df_hly.columns = [0 for _ in range(len(df_hly.columns))]
+df = pd.concat([df_jzx, df_hly.iloc[:, 1:]], axis=1)
+X = df.iloc[:, 1:].to_numpy().T
+y = df.columns[1:].to_numpy().T
 #with pd.option_context('display.max_rows', None, 'display.max_columns', None):  # more options can be specified also
 #    print(X.isnull().sum().sum())
 #input()

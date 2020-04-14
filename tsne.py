@@ -8,7 +8,9 @@ from sklearn import (manifold, datasets, decomposition, ensemble,
              discriminant_analysis, random_projection)
 ## Loading and curating the data
 #df = pd.read_excel('output/pjs_virtual_seq_with_healthy.xlsx', header=None)
+#df_jzx = pd.read_csv('output/virtual_seq_20200408113532.csv', header=0)
 df_jzx = pd.read_csv('output/JZX_virtual_seq_20200408080722.csv', header=0)
+#df_hly = pd.read_excel('output/pjs_virtual_seq.xlsx', header=0)
 df_hly = pd.read_csv('output/Healthy_virtual_seq_20200409051915.csv', header=0)
 print('Read csv ok.')
 df_jzx.columns = [1 for _ in range(len(df_jzx.columns))]
@@ -28,9 +30,11 @@ def plot_embedding(X, title=None):
     plt.figure()
     ax = plt.subplot(111)
     for i in range(X.shape[0]):
-        plt.text(X[i, 0], X[i, 1], str(y[i]),
-                 color=plt.cm.Set1(y[i]),
-                 fontdict={'weight': 'bold', 'size': 9})
+        #plt.text(X[i, 0], X[i, 1], str(y[i]),
+        #         color=plt.cm.Set1(y[i]),
+        #         fontdict={'weight': 'bold', 'size': 9})
+        plt.plot(X[i, 0], X[i, 1], '.',
+                 color=plt.cm.Set1(y[i]))
     """if hasattr(offsetbox, 'AnnotationBbox'):
         ## only print thumbnails with matplotlib > 1.0
         shown_images = np.array([[1., 1.]])  # just something big

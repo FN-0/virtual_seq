@@ -8,10 +8,10 @@ from sklearn import (manifold, datasets, decomposition, ensemble,
              discriminant_analysis, random_projection)
 ## Loading and curating the data
 #df_jzx = pd.read_csv('output/virtual_seq_20200408113532.csv', index_col='AccID')
-df_jzx = pd.read_excel('data/JZX.xlsx', index_col='AccID').fillna(0)
+df_jzx = pd.read_csv('output/JZX_virtual_seq_20200408080722.csv', index_col='AccID').fillna(0)
 #df_hly = pd.read_csv('output/pjs_virtual_seq.csv', index_col='AccID')
-df_hly = pd.read_excel('data/BS+JS.xlsx', index_col='AccID').fillna(0)
-print('Read csv ok.')
+df_hly = pd.read_csv('output/Healthy_virtual_seq_20200409051915.csv', index_col='AccID').fillna(0)
+print('Read data ok.')
 cols1 = df_jzx.columns[1:].to_list()
 cols2 = df_hly.columns[1:].to_list()
 cols1.extend(cols2)
@@ -50,11 +50,11 @@ def plot_embedding(X, title=None):
     plt.figure()
     ax = plt.subplot(111)
     for i in range(X.shape[0]):
-        plt.text(X[i, 0], X[i, 1], str(cols1[i]),
-                 color=plt.cm.Set1(y[i]),
-                 fontdict={'size': 5})
-        #plt.plot(X[i, 0], X[i, 1], '.',
-        #         color=plt.cm.Set1(y[i]))
+        #plt.text(X[i, 0], X[i, 1], str(cols1[i]),
+        #         color=plt.cm.Set1(y[i]),
+        #         fontdict={'size': 5})
+        plt.plot(X[i, 0], X[i, 1], '.',
+                 color=plt.cm.Set1(y[i]))
     """if hasattr(offsetbox, 'AnnotationBbox'):
         ## only print thumbnails with matplotlib > 1.0
         shown_images = np.array([[1., 1.]])  # just something big

@@ -8,9 +8,9 @@ from sklearn import (manifold, datasets, decomposition, ensemble,
              discriminant_analysis, random_projection)
 ## Loading and curating the data
 #df_jzx = pd.read_csv('output/virtual_seq_20200408113532.csv', header=0)
-df_jzx = pd.read_csv('output/JZX_virtual_seq_20200408080722.csv', header=0)
+df_jzx = pd.read_excel('data/JZX.xlsx', header=0).fillna(0)
 #df_hly = pd.read_csv('output/pjs_virtual_seq.csv', header=0)
-df_hly = pd.read_csv('output/Healthy_virtual_seq_20200409051915.csv', header=0)
+df_hly = pd.read_excel('data/BS+JS.xlsx', header=0).fillna(0)
 print('Read csv ok.')
 cols1 = df_jzx.columns[1:].to_list()
 cols2 = df_hly.columns[1:].to_list()

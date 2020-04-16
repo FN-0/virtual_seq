@@ -7,10 +7,10 @@ from matplotlib import offsetbox
 from sklearn import (manifold, datasets, decomposition, ensemble,
              discriminant_analysis, random_projection)
 ## Loading and curating the data
-#df_jzx = pd.read_csv('output/virtual_seq_20200408113532.csv', header=0)
-df_jzx = pd.read_excel('data/JZX.xlsx', header=0).fillna(0)
-#df_hly = pd.read_csv('output/pjs_virtual_seq.csv', header=0)
-df_hly = pd.read_excel('data/BS+JS.xlsx', header=0).fillna(0)
+#df_jzx = pd.read_csv('output/virtual_seq_20200408113532.csv', index_col='AccID')
+df_jzx = pd.read_excel('data/JZX.xlsx', index_col='AccID').fillna(0)
+#df_hly = pd.read_csv('output/pjs_virtual_seq.csv', index_col='AccID')
+df_hly = pd.read_excel('data/BS+JS.xlsx', index_col='AccID').fillna(0)
 print('Read csv ok.')
 cols1 = df_jzx.columns[1:].to_list()
 cols2 = df_hly.columns[1:].to_list()
@@ -19,7 +19,13 @@ cols1.extend(cols2)
 df_jzx.columns = [1 for _ in range(len(df_jzx.columns))]
 df_hly.columns = [0 for _ in range(len(df_hly.columns))]
 df = pd.concat([df_jzx, df_hly.iloc[:, 1:]], axis=1)
-# Remove rows
+# Get rows
+f = open('glst.txt', 'r')
+gene_lst = []
+for gid in f.readlines():
+    gene_lst.append(gid.strip('\n').strip('\t'))
+df = df.loc[gene_lst]
+f.close()
 """remove_row_list = []
 for label, row in df.iterrows():
     p_array = np.array(row[1:].to_list())
